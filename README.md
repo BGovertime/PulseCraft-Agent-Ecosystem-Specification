@@ -109,4 +109,4 @@ A centralized audit trail that captures:
 * Integrate **Rollback Logic** to allow users to revert Agent versions directly from the History Log.
 * Implement **WebSockets** if you plan to move the Dashboard to a remote server for multi-user real-time sync.
 
-ต้องการให้ปรับแก้ส่วนไหน หรือเพิ่มรายละเอียดเชิงลึกในส่วนใดของเอกสารภาษาอังกฤษนี้อีกไหมครับ?
+
