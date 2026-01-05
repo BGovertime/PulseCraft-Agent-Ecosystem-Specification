@@ -1,0 +1,30 @@
+name: Auto Update Agent Manifest
+
+on:
+  push:
+    paths:
+      - 'agents/**.md'  # รันเมื่อมีการแก้ไฟล์ Markdown ในโฟลเดอร์ agents
+
+jobs:
+  update-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Run version update script
+        run: python scripts/update_manifest.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "PulseCraft-Bot"
+          git config --global user.email "bot@pulsecraft.studio"
+          git add agent_manifest.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-update agent versions in manifest" && git push)
